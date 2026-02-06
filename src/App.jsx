@@ -1,10 +1,11 @@
-import { TaskContainer } from "./components/taskContainer";
+import { MusicPlayer } from "./components/music-player/music-player";
+
+
 
 function App() {
   return (
-    <>
-    
-      <TaskContainer />
+     <>
+    <MusicPlayer></MusicPlayer>
     </>
   );
 }
