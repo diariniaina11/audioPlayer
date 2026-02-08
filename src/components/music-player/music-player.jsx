@@ -5,7 +5,7 @@ import styles from "./music-player.module.css"
 import { useAudioPlayer } from "../../hooks/use-audio-player"
 
 export function MusicPlayer(){
-    const {isPlaying, currentTime, duration, play, pause} = useAudioPlayer("./audio/WIZKING-GAVIRIA.mp3");
+    const {isPlaying, currentTime, currentFormatedTime, duration, durationFormated, play, pause} = useAudioPlayer("./audio/WIZKING-GAVIRIA.mp3");
 
 
     return (
@@ -14,9 +14,12 @@ export function MusicPlayer(){
             <button className={styles.buttonPrimary} onClick={(isPlaying ? pause : play)}>{isPlaying ? <FaPause /> : <FaPlay />}
 </button>
             <div className={styles.timer}>
-                <span>0:00</span>/ <span>3:00</span>
+                <span>{currentFormatedTime}</span>/ <span>{durationFormated}</span>
             </div>
-            <progress className={styles.progressbar} value={1} max={3}></progress>
+            <progress 
+                className={styles.progressbar} 
+                value={currentTime} 
+                max={duration}></progress>
 
         </div>
         </>
