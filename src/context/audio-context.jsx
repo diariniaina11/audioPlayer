@@ -7,15 +7,14 @@ const AudioContext = createContext();
 export const useAudioContext = () => useContext(AudioContext);
 
 
-export const AudioProvider = ({children}) => {
-    const data = {lastName : "Doe", firstName:"John"}
+export const AudioProvider = ({ children }) => {
     const audioPlayer = useAudioPlayer()
     console.log("audio::", audioPlayer);
     return (
-        <AudioContext.Provider value = {audioPlayer}>
+        <AudioContext.Provider value={audioPlayer}>
             {children}
         </AudioContext.Provider>
-        
+
     )
 
 }
