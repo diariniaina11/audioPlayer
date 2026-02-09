@@ -1,12 +1,15 @@
+import AudioList from "./components/audio-list/audio-list";
 import { MusicPlayer } from "./components/music-player/music-player";
-
+import { AudioProvider } from "./context/audio-context";
 
 
 function App() {
   return (
-     <>
-    <MusicPlayer></MusicPlayer>
-    </>
+    <AudioProvider>
+      <h1>Music Player</h1>
+      <MusicPlayer></MusicPlayer>
+      <AudioList></AudioList>
+    </AudioProvider>
   );
 }
 

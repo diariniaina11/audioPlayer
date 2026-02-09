@@ -4,6 +4,7 @@ export function useAudioPlayer(audioSrc){
     const [isPlaying, setIsPlaying] = useState(false);
     const [currentTime, setCurrentTime] = useState(0);
     const [duration, setDuration] = useState(0)
+    const  [currentTrack, setCurrentTrack] = useState(0)
     const audioRef = useRef(new Audio(audioSrc));
     
     useEffect(()=>{
@@ -18,8 +19,14 @@ export function useAudioPlayer(audioSrc){
             audio.removeEventListener("timeupdate", updateCurrentTime);
             audio.removeEventListener("loadedmetadata", updateDuration);     
         };
-
     }, []);
+    useEffect (()=>{
+        if(currentTrack){
+            audioRef.current.src = currentTrack.src;
+            play();
+        }
+    }, [currentTrack])
+     
     const play =()=>{
         audioRef.current.play();
         setIsPlaying(true);
@@ -41,6 +48,8 @@ export function useAudioPlayer(audioSrc){
         durationFormated: formatTime(duration), 
         play,
         pause,
+        currentTrack,
+        setCurrentTrack
 
     };
         
