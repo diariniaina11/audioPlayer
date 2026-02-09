@@ -5,7 +5,7 @@ export function useAudioPlayer(initialSrc) {
     const [currentTime, setCurrentTime] = useState(0);
     const [duration, setDuration] = useState(0);
     const [currentTrack, setCurrentTrack] = useState(null);
-    const audioRef = useRef(new Audio(initialSrc));
+    const audioRef = useRef(new Audio(initialSrc || undefined));
 
     useEffect(() => {
         const audio = audioRef.current;
@@ -38,8 +38,18 @@ export function useAudioPlayer(initialSrc) {
 
     const play = () => {
         if (!audioRef.current.src && !currentTrack) return;
-        audioRef.current.play();
-        setIsPlaying(true);
+
+        const playPromise = audioRef.current.play();
+        if (playPromise !== undefined) {
+            playPromise.then(() => {
+                setIsPlaying(true);
+            }).catch(error => {
+                console.error("Playback failed:", error);
+                setIsPlaying(false);
+            });
+        } else {
+            setIsPlaying(true);
+        }
     }
 
     const pause = () => {
