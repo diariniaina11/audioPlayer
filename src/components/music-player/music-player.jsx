@@ -28,17 +28,25 @@ export function MusicPlayer() {
 
     return (
         <div className={styles.container}>
-            <button className={styles.buttonPrimary} onClick={(isPlaying ? pause : play)}>
-                {isPlaying ? <FaPause /> : <FaPlay />}
-            </button>
-            <div className={styles.timer}>
-                <span>{currentFormatedTime}</span>/ <span>{durationFormated}</span>
+            <div className={styles.trackInfo}>
+                {currentTrack.title}
             </div>
+
+            <div className={styles.controls_wrapper}>
+                <button className={styles.buttonPrimary} onClick={(isPlaying ? pause : play)}>
+                    {isPlaying ? <FaPause /> : <FaPlay style={{ marginLeft: '4px' }} />}
+                </button>
+            </div>
+
             <progress
                 className={styles.progressbar}
                 value={currentTime}
                 max={duration}></progress>
 
+            <div className={styles.timer}>
+                <span>{currentFormatedTime}</span>
+                <span>{durationFormated}</span>
+            </div>
         </div>
     )
 }

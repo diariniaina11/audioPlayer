@@ -1,64 +1,90 @@
 .container {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    background-color: #121111;
-    border-radius: 9999px;
-    border: 1px solid #201f1f;
-    padding: 0.6em 1.5em 0.6em 0.6em;
-  }
-  
-  .buttonPrimary {
-    border-radius: 9999px;
-    border: 1px solid transparent;
-    padding: 0.6em;
-    font-size: 1em;
-    font-weight: 500;
-    font-family: inherit;
-    background-color: #1a1a1a;
-    cursor: pointer;
-    transition: border-color 0.25s;
-    display: flex;
-    align-items: center;
-    gap: 5px;
-  }
-  
-  .buttonPrimary:hover {
-    background-color: rgba(59, 121, 246, 0.15);
-    border-color: rgba(59, 121, 246, 0.25);
-  }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--card-bg);
+  border-radius: var(--radius);
+  border: var(--card-border);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-md);
+  position: relative;
+  overflow: hidden;
+}
 
-  .buttonPrimary:focus,
-.buttonPrimary:focus-visible {
-  outline: 4px auto rgba(59, 121, 246, 0.25);
+/* Add a subtle glow/gradient behind */
+.container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--accent-color), #c084fc);
+}
+
+.controls_wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.trackInfo {
+  text-align: center;
+  margin-bottom: 1rem;
+  font-weight: 600;
+  font-size: 1.1em;
+  color: var(--text-primary);
+}
+
+.buttonPrimary {
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  font-size: 1.2em;
+  background-color: var(--accent-color);
+  color: white;
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4);
+}
+
+.buttonPrimary:hover {
+  background-color: var(--accent-hover);
+  transform: scale(1.05);
 }
 
 .timer {
-  flex-shrink: 0;
-  margin: 0 10px;
-  font-size: 0.8rem;
-  color: #2870ff;
-  width: 100px;
-}
-
-.progressBar {
+  display: flex;
+  justify-content: space-between;
   width: 100%;
-  height: 5px;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin-top: 0.5rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.progressbar {
+  width: 100%;
+  height: 6px;
   appearance: none;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 99px;
+  cursor: pointer;
+  overflow: hidden;
 }
 
-.progressBar::-webkit-progress-bar {
-  border-radius: 9999px;
-  background-color: rgba(59, 121, 246, 0.25); /* Couleur de fond */
+.progressbar::-webkit-progress-bar {
+  background-color: rgba(255, 255, 255, 0.1);
 }
 
-.progressBar::-webkit-progress-value {
-  border-radius: 9999px;
-  background-color: #2870ff; /* Couleur de la barre de progression */
+.progressbar::-webkit-progress-value {
+  background: linear-gradient(90deg, var(--accent-color), #c084fc);
+  border-radius: 99px;
 }
 
-.progressBar::-moz-progress-bar{
-    border-radius: 9999px;
-    background-color: #2870ff;
+.progressbar::-moz-progress-bar {
+  background: linear-gradient(90deg, var(--accent-color), #c084fc);
+  border-radius: 99px;
 }

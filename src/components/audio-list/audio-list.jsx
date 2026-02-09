@@ -34,14 +34,22 @@ const AudioList = () => {
   return (
     <div className={styles.container}>
       {tracks.map((track) => (
-        <div key={track.id} className={styles.song}>
-          <img src={track.imgSrc} alt="SongCover" width='30px' height="30px" />
-          <button className={styles.buttonPrimary} onClick={() => handlePlayPause(track)}>
-            {currentTrack?.src === track.src && isPlaying ? <FaPause /> : <FaPlay />}
-          </button>
-          <div className={track.title}>
+        <div
+          key={track.id}
+          className={`${styles.song} ${currentTrack?.src === track.src ? styles.songIsPlaying : ''}`}
+          onClick={() => handlePlayPause(track)}
+          style={{ cursor: 'pointer' }}
+        >
+          <img src={track.imgSrc} alt="SongCover" width='48px' height='48px' style={{ borderRadius: '6px' }} />
+
+          <div className={`${styles.trackTitle} ${currentTrack?.src === track.src ? styles.titleIsPlaying : ''}`}>
             {track.title}
           </div>
+
+          <button className={styles.buttonPrimary} style={{ pointerEvents: 'none' }}>
+            {/* pointerEvents none so row click handles it, or handle stop propagation */}
+            {currentTrack?.src === track.src && isPlaying ? <FaPause /> : <FaPlay style={{ marginLeft: '2px' }} />}
+          </button>
         </div>
       ))}
     </div>
